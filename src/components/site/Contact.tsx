@@ -20,11 +20,13 @@ import building from "@/assets/building.jpeg";
 export function Contact() {
   const { contact } = siteContent;
 
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=Behind+Yadav+Bazar,+Dubagga,+Lucknow`;
+  const directionsUrl =
+    (contact as { mapDirectUrl?: string }).mapDirectUrl ||
+    `https://www.google.com/maps/dir/?api=1&destination=26.875355666865893,80.8488055402853`;
 
   const mapSrc =
     contact.mapEmbedUrl ||
-    "https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1sBehind+Yadav+Bazar,+Dubagga,+Lucknow";
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d889.7215561446554!2d80.8488055402853!3d26.875355666865893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bff006e570e7b%3A0xc306de5147444ee5!2sDileep%20Market!5e0!3m2!1sen!2sin!4v1790765177409!5m2!1sen!2sin";
 
   const [shouldLoadMap, setShouldLoadMap] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
