@@ -84,6 +84,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://www.google.com" },
+      { rel: "preconnect", href: "https://maps.google.com" },
+      { rel: "preconnect", href: "https://maps.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://maps.googleapis.com" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Caveat:wght@600;700&display=swap",

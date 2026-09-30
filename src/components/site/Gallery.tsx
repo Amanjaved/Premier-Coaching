@@ -129,50 +129,131 @@ export function Gallery() {
           })}
         </div>
 
-        {/* Gallery Layout: Masonry Showcase + Editorial Highlight Card */}
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
-          {/* Left: Dynamic Photo Columns */}
-          <div className="lg:col-span-8 xl:col-span-9 columns-1 sm:columns-2 lg:columns-3 gap-4 [&>*]:mb-4">
-            {filteredImages.map((img, i) => (
-              <Reveal
-                key={img.src + i}
-                delay={(i % 3) * 0.05}
-                className="break-inside-avoid mb-4 inline-block w-full"
-              >
+        {/* Featured Visual Story (First 3-4 Images) */}
+        {filteredImages.length >= 3 && (
+          <div className="mt-8 sm:mt-10 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+            {/* Primary Large Hero Image (Index 0) */}
+            <div className="lg:col-span-7 xl:col-span-8">
+              <Reveal>
                 <div
                   role="button"
                   data-cursor="view"
                   tabIndex={0}
-                  onClick={() => openLightbox(i)}
+                  onClick={() => openLightbox(0)}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") openLightbox(i);
+                    if (e.key === "Enter" || e.key === " ") openLightbox(0);
                   }}
-                  className="group relative block w-full overflow-hidden rounded-2xl border-2 border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#0c1a33] shadow-sm hover:shadow-md dark:shadow-xl cursor-pointer transition-all duration-300 hover:border-amber-400/40 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#f3ba2f]"
+                  className="group relative block w-full h-[320px] sm:h-[440px] lg:h-[480px] overflow-hidden rounded-3xl border-2 border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#0c1a33] shadow-md dark:shadow-2xl cursor-pointer transition-all duration-300 hover:border-amber-400/50 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#f3ba2f]"
                 >
                   <img
-                    src={img.src}
-                    alt={img.alt}
-                    width={600}
-                    height={800}
-                    loading="lazy"
-                    className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    src={filteredImages[0].src}
+                    alt={filteredImages[0].alt}
+                    className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050e1d]/95 via-[#050e1d]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
-                    <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#071328] bg-[#f3ba2f] px-2.5 py-1 rounded-full w-fit backdrop-blur-md mb-1.5 shadow-sm">
-                      {img.category}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050e1d]/95 via-[#050e1d]/40 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#071328] bg-[#f3ba2f] px-3 py-1 rounded-full w-fit mb-2 shadow-sm">
+                      {filteredImages[0].category} • Featured
                     </span>
-                    <p className="text-xs sm:text-sm font-serif font-bold leading-snug text-white">
-                      {img.title || img.alt}
-                    </p>
-                    <span className="mt-2 inline-flex items-center gap-1 text-[11px] text-amber-300 font-semibold">
-                      <Eye className="size-3.5 text-[#f3ba2f]" /> Click to view fullscreen
+                    <h3 className="text-lg sm:text-2xl font-serif font-bold leading-tight text-white">
+                      {filteredImages[0].title || filteredImages[0].alt}
+                    </h3>
+                    <span className="mt-2 inline-flex items-center gap-1.5 text-xs text-amber-300 font-semibold">
+                      <Eye className="size-4 text-[#f3ba2f]" /> Click to view full resolution
                     </span>
                   </div>
                 </div>
               </Reveal>
-            ))}
+            </div>
+
+            {/* Companion Large Images (Index 1 & 2) */}
+            <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-4 sm:gap-6">
+              {filteredImages.slice(1, 3).map((img, idx) => {
+                const actualIndex = idx + 1;
+                return (
+                  <Reveal key={img.src + actualIndex} delay={0.1 * actualIndex} className="flex-1">
+                    <div
+                      role="button"
+                      data-cursor="view"
+                      tabIndex={0}
+                      onClick={() => openLightbox(actualIndex)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") openLightbox(actualIndex);
+                      }}
+                      className="group relative block w-full h-[180px] sm:h-[205px] lg:h-[228px] overflow-hidden rounded-3xl border-2 border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#0c1a33] shadow-md dark:shadow-xl cursor-pointer transition-all duration-300 hover:border-amber-400/50 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#f3ba2f]"
+                    >
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#050e1d]/90 via-[#050e1d]/30 to-transparent flex flex-col justify-end p-4 sm:p-5 text-white">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#071328] bg-[#f3ba2f] px-2.5 py-0.5 rounded-full w-fit mb-1.5 shadow-sm">
+                          {img.category}
+                        </span>
+                        <h4 className="text-sm sm:text-base font-serif font-bold leading-snug text-white line-clamp-1">
+                          {img.title || img.alt}
+                        </h4>
+                        <span className="mt-1 inline-flex items-center gap-1 text-[11px] text-amber-300 font-medium">
+                          <Eye className="size-3 text-[#f3ba2f]" /> View photo
+                        </span>
+                      </div>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Gallery Collection: Remaining Photos Masonry + Campus Culture Highlight */}
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+          {/* Dynamic Photo Masonry Columns */}
+          <div className="lg:col-span-8 xl:col-span-9 columns-1 sm:columns-2 lg:columns-3 gap-4 [&>*]:mb-4">
+            {(filteredImages.length >= 3 ? filteredImages.slice(3) : filteredImages).map(
+              (img, offsetIdx) => {
+                const actualIndex = filteredImages.length >= 3 ? offsetIdx + 3 : offsetIdx;
+                return (
+                  <Reveal
+                    key={img.src + actualIndex}
+                    delay={(offsetIdx % 3) * 0.05}
+                    className="break-inside-avoid mb-4 inline-block w-full"
+                  >
+                    <div
+                      role="button"
+                      data-cursor="view"
+                      tabIndex={0}
+                      onClick={() => openLightbox(actualIndex)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") openLightbox(actualIndex);
+                      }}
+                      className="group relative block w-full overflow-hidden rounded-2xl border-2 border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#0c1a33] shadow-sm hover:shadow-md dark:shadow-xl cursor-pointer transition-all duration-300 hover:border-amber-400/40 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[#f3ba2f]"
+                    >
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        width={600}
+                        height={800}
+                        loading="lazy"
+                        className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#050e1d]/95 via-[#050e1d]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
+                        <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#071328] bg-[#f3ba2f] px-2.5 py-1 rounded-full w-fit backdrop-blur-md mb-1.5 shadow-sm">
+                          {img.category}
+                        </span>
+                        <p className="text-xs sm:text-sm font-serif font-bold leading-snug text-white">
+                          {img.title || img.alt}
+                        </p>
+                        <span className="mt-2 inline-flex items-center gap-1 text-[11px] text-amber-300 font-semibold">
+                          <Eye className="size-3.5 text-[#f3ba2f]" /> Click to view fullscreen
+                        </span>
+                      </div>
+                    </div>
+                  </Reveal>
+                );
+              },
+            )}
           </div>
 
           {/* Right: Institutional Community Highlight Card */}

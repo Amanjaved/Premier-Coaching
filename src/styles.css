@@ -426,3 +426,35 @@ p {
     cursor: text !important;
   }
 }
+
+/* Print and PDF Export Optimization */
+@media print {
+  html,
+  body {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    background: white !important;
+    color: #0f172a !important;
+  }
+
+  /* Hide interactive fixed widgets, custom cursor, and backdrop blurs */
+  .fixed,
+  #cursor-dot,
+  #cursor-ring,
+  .btn-shimmer::after,
+  nav {
+    display: none !important;
+  }
+
+  /* Prevent awkward page breaks and trailing blank pages */
+  footer {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  section {
+    break-inside: auto;
+  }
+}

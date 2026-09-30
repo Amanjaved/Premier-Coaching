@@ -44,6 +44,8 @@ export const siteContent = {
     address: "Behind Yadav Bazar, Dubagga, Lucknow",
     timings: "Call us for batch timings",
     mapQuery: "Behind+Yadav+Bazar+Dubagga+Lucknow",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1sBehind+Yadav+Bazar,+Dubagga,+Lucknow",
   },
 
   social: {
@@ -89,7 +91,7 @@ export const siteContent = {
   about: {
     eyebrow: "ABOUT PREMIER COACHING",
     heading: "Building Strong Foundations for a Better Future",
-    body: "Premier Coaching is a student-friendly coaching institute located in Dubagga, Lucknow. We focus on concept-based teaching, discipline, and verifiable results — where every student receives personalized attention in small, interactive batches.",
+    body: "Premier Coaching in Dubagga, Lucknow provides structured, concept-driven mentoring for Classes 1st–12th in small, focused batches — ensuring every student receives personal attention and measurable board growth.",
     photo: {
       src: building,
       alt: "Premier Coaching institute premises behind Yadav Bazar, Dubagga, Lucknow",

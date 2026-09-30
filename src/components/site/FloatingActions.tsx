@@ -6,7 +6,7 @@ export function FloatingActions() {
   return (
     <>
       {/* Desktop/Tablet Floating WhatsApp Widget */}
-      <div className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center gap-2.5">
+      <div className="fixed bottom-6 right-6 z-40 hidden sm:flex items-center gap-2.5 print:hidden">
         <a
           href={whatsappLink()}
           target="_blank"
@@ -23,35 +23,26 @@ export function FloatingActions() {
         </a>
       </div>
 
-      {/* Fixed Mobile Bottom High-Conversion CTA Bar */}
-      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 gap-1.5 border-t border-slate-200/90 dark:border-white/10 bg-white/95 dark:bg-[#081426]/95 p-2 backdrop-blur-xl sm:hidden shadow-[0_-4px_25px_rgba(0,0,0,0.08)] dark:shadow-[0_-4px_25px_rgba(0,0,0,0.4)]">
-        {/* Call button */}
-        <a
-          href={`tel:+91${siteContent.contact.phonePrimary}`}
-          className="inline-flex flex-col items-center justify-center gap-1 rounded-xl bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/15 py-2 text-[11px] font-bold text-slate-800 dark:text-white transition-transform active:scale-95 border border-slate-200 dark:border-white/10"
-        >
-          <Phone className="size-4 text-[#d97706] dark:text-[#f3ba2f]" />
-          <span>CALL</span>
-        </a>
-
-        {/* WhatsApp button */}
+      {/* Fixed Mobile Bottom High-Conversion Dual CTA Bar */}
+      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-slate-200/90 dark:border-white/10 bg-white/95 dark:bg-[#071328]/95 p-2.5 backdrop-blur-xl sm:hidden shadow-[0_-4px_25px_rgba(0,0,0,0.12)] print:hidden">
+        {/* WhatsApp Us button */}
         <a
           href={whatsappLink()}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex flex-col items-center justify-center gap-1 rounded-xl bg-[#25d366] hover:bg-[#20ba59] py-2 text-[11px] font-bold text-white shadow-xs transition-transform active:scale-95"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25d366] hover:bg-[#20ba59] active:scale-[0.98] py-3 text-xs font-bold text-white shadow-sm transition-all"
         >
           <MessageCircle className="size-4 fill-white" />
-          <span>WHATSAPP</span>
+          <span>WhatsApp Us</span>
         </a>
 
-        {/* Enquire button */}
+        {/* Admission Open button */}
         <a
           href="#admission"
-          className="inline-flex flex-col items-center justify-center gap-1 rounded-xl bg-[#f3ba2f] hover:bg-[#e0ab24] py-2 text-[11px] font-bold text-[#071328] shadow-md transition-transform active:scale-95"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#f3ba2f] hover:bg-[#e0ab24] active:scale-[0.98] py-3 text-xs font-bold text-[#071328] shadow-sm transition-all"
         >
           <GraduationCap className="size-4 text-[#071328]" />
-          <span>ADMISSION</span>
+          <span>Admission Open</span>
         </a>
       </div>
     </>

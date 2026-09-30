@@ -21,7 +21,7 @@ export function About() {
     {
       number: "01",
       title: "Concept-Based Mastery",
-      desc: "We prioritize deep conceptual understanding and logical problem-solving over rote memorization, helping students retain formulas and theories naturally.",
+      desc: "Deep conceptual clarity and analytical problem-solving over rote memorization, helping students retain formulas and fundamentals naturally.",
       Icon: BookOpen,
       accent: "from-amber-400 to-amber-500",
       bgLight: "bg-amber-500/10 text-amber-700 dark:text-[#f3ba2f] border-amber-500/30",
@@ -29,7 +29,7 @@ export function About() {
     {
       number: "02",
       title: "Weekly Diagnostic Testing",
-      desc: "Every Saturday assessment with chapter-wise analytics to identify weak areas early, reinforced with structured previous-year board questions.",
+      desc: "Saturday assessments with chapter-wise analytics to identify weak areas early, paired with real board exam paper patterns.",
       Icon: BarChart3,
       accent: "from-amber-400 to-amber-500",
       bgLight: "bg-amber-500/10 text-amber-700 dark:text-[#f3ba2f] border-amber-500/30",
@@ -37,7 +37,7 @@ export function About() {
     {
       number: "03",
       title: "Dedicated 1-on-1 Mentorship",
-      desc: "Strictly controlled batch sizes ensure our subject specialists know every child by name and provide daily post-class doubt resolution.",
+      desc: "Strictly controlled batch sizes ensure our subject specialists know every child and provide daily post-class doubt clearing.",
       Icon: Users,
       accent: "from-amber-400 to-amber-500",
       bgLight: "bg-amber-500/10 text-amber-700 dark:text-[#f3ba2f] border-amber-500/30",
@@ -68,39 +68,39 @@ export function About() {
           align="split"
         />
 
-        <div className="mt-10 sm:mt-12 grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          {/* ==================== LEFT COLUMN: MULTI-LAYERED PHOTO STAGE ==================== */}
-          <div className="lg:col-span-6 relative">
-            <Reveal className="relative mx-auto max-w-lg lg:max-w-none">
-              {/* Outer architectural card frame */}
-              <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 bg-slate-50/80 dark:bg-[#0c1a33]/90 p-2 sm:p-2.5 shadow-xl backdrop-blur-xl">
-                {/* Main Building Image */}
-                <div className="relative overflow-hidden rounded-2xl aspect-[4/3] w-full">
+        <div className="mt-12 sm:mt-16 grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          {/* ==================== LEFT COLUMN (55%): PROMINENT REAL PHOTO STAGE ==================== */}
+          <div className="lg:col-span-7 relative">
+            <Reveal className="relative">
+              {/* Outer architectural frame with subtle breakout */}
+              <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 bg-slate-50/80 dark:bg-[#0c1a33]/90 p-2.5 sm:p-3.5 shadow-2xl backdrop-blur-xl">
+                {/* Main Real Building Image - More Prominent Visual Stature */}
+                <div className="relative overflow-hidden rounded-2xl aspect-[16/10] sm:aspect-[16/10.5] w-full shadow-inner">
                   <img
                     src={about.photo.src}
                     alt={about.photo.alt}
-                    width={800}
-                    height={600}
+                    width={960}
+                    height={640}
                     loading="lazy"
-                    className="size-full object-cover transition-transform duration-700 hover:scale-105"
+                    className="size-full object-cover transition-transform duration-700 hover:scale-103"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050e1d]/90 via-transparent to-black/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050e1d]/90 via-transparent to-black/10" />
 
                   {/* Location badge on photo */}
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-2">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-[#050e1d]/90 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-white shadow-xl border border-white/20 backdrop-blur-md">
-                      <MapPin className="size-3.5 text-[#f3ba2f] shrink-0" />
-                      <span className="truncate">{about.locationTag}</span>
+                  <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-[#050e1d]/90 px-4 py-2 text-xs sm:text-sm font-bold text-white shadow-xl border border-white/20 backdrop-blur-md">
+                      <MapPin className="size-4 text-[#f3ba2f] shrink-0" />
+                      <span>{about.locationTag}</span>
                     </div>
 
-                    <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-[#f3ba2f] px-3 py-1.5 text-xs font-bold text-[#071328] shadow-md backdrop-blur-md">
-                      <Sparkles className="size-3.5" /> Dubagga Center
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f3ba2f] px-3.5 py-1.5 text-xs font-bold text-[#071328] shadow-md backdrop-blur-md">
+                      <Sparkles className="size-3.5" /> Dubagga Campus
                     </span>
                   </div>
                 </div>
 
                 {/* Bottom Architectural Info Strip */}
-                <div className="mt-2.5 px-3 py-1.5 flex items-center justify-between text-xs text-slate-600 dark:text-slate-300">
+                <div className="mt-3 px-3 py-1 flex items-center justify-between text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                   <span className="font-semibold">Independent Academic Facility</span>
                   <span className="text-[#d97706] dark:text-[#f3ba2f] font-bold">
                     Safe &amp; Disciplined Environment
@@ -108,9 +108,9 @@ export function About() {
                 </div>
               </div>
 
-              {/* Floating Overlapping Card: Real Classroom In-Session */}
-              <div className="absolute -bottom-6 -right-2 sm:-right-4 w-3/5 max-w-[250px] z-20 transition-transform duration-300 hover:scale-105">
-                <div className="overflow-hidden rounded-2xl border-2 border-slate-200 dark:border-white/15 bg-white dark:bg-[#0c1a33] shadow-2xl rotate-2">
+              {/* Real Classroom In-Session Overlapping Badge */}
+              <div className="hidden sm:block absolute -bottom-6 -right-4 w-56 lg:w-64 z-20 transition-transform duration-300 hover:scale-105">
+                <div className="overflow-hidden rounded-2xl border-2 border-white dark:border-white/15 bg-white dark:bg-[#0c1a33] shadow-2xl">
                   <img
                     src={studentsGroup4}
                     alt="Students attending lecture at Premier Coaching"
@@ -119,58 +119,47 @@ export function About() {
                     className="aspect-[16/10] w-full object-cover"
                     loading="lazy"
                   />
-                  <div className="p-2.5 bg-gradient-to-br from-slate-900 to-[#071328] text-white border-t border-white/10">
-                    <div className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-[#f3ba2f]">
-                      <Award className="size-3 text-[#f3ba2f]" /> Est. 2018
-                    </div>
-                    <div className="font-serif text-xs sm:text-sm font-bold text-white leading-tight mt-0.5">
-                      8+ Years of Academic Excellence
-                    </div>
+                  <div className="p-3 bg-[#071328] text-white border-t border-white/10">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#f3ba2f] block">
+                      Active Classroom
+                    </span>
+                    <span className="font-serif text-xs sm:text-sm font-bold text-white block mt-0.5">
+                      Small Interactive Batches
+                    </span>
                   </div>
                 </div>
               </div>
 
-              {/* Decorative Corner Sparkle */}
-              <DoodleSparkle className="absolute -top-4 -left-2 size-7 text-[#f3ba2f] animate-bounce" />
+              <DoodleSparkle className="absolute -top-4 -left-2 size-8 text-[#f3ba2f] animate-bounce" />
             </Reveal>
           </div>
 
-          {/* ==================== RIGHT COLUMN: EDITORIAL NARRATIVE & STAGGERED PILLARS ==================== */}
-          <div className="lg:col-span-6 space-y-5 pt-3 lg:pt-0">
+          {/* ==================== RIGHT COLUMN (45%): EDITORIAL NARRATIVE ==================== */}
+          <div className="lg:col-span-5 space-y-6 pt-2 lg:pt-0">
             <Reveal delay={0.1}>
-              <div className="space-y-3">
-                <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white leading-tight">
+              <div className="space-y-3.5">
+                <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white leading-tight">
                   Where Academic Potential Meets Structured Guidance
                 </h3>
-                <p className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300 font-normal">
+                <p className="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300 font-normal">
                   {about.body}
                 </p>
               </div>
             </Reveal>
 
-            {/* 3 Staggered Institutional Pillars */}
-            <div className="space-y-3 pt-1">
+            {/* Editorial Institutional Pillars (No Repeated Cards - Clean Minimal List) */}
+            <div className="space-y-4 pt-2 divide-y divide-slate-100 dark:divide-white/10">
               {corePillars.map((pillar, i) => (
                 <Reveal key={pillar.number} delay={0.14 + i * 0.08}>
-                  <div className="group relative flex items-start gap-3.5 sm:gap-4 rounded-2xl border border-slate-200/90 dark:border-white/10 bg-slate-50/80 dark:bg-[#0c1a33]/85 p-3.5 sm:p-4 shadow-sm hover:shadow-md dark:shadow-xl transition-all duration-300 hover:border-amber-400/40 hover:translate-x-1">
-                    {/* Number & Icon Pill */}
-                    <div className="flex flex-col items-center gap-0.5 shrink-0">
-                      <span
-                        className={`grid size-10 place-items-center rounded-xl border ${pillar.bgLight} shadow-xs transition-transform group-hover:scale-105`}
-                      >
-                        <pillar.Icon className="size-5" strokeWidth={2.2} />
-                      </span>
-                      <span className="text-[10px] font-mono font-bold tracking-wider text-[#d97706] dark:text-[#f3ba2f]">
-                        {pillar.number}
-                      </span>
-                    </div>
-
-                    {/* Text Details */}
-                    <div className="flex-1">
-                      <h4 className="font-serif text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-[#d97706] dark:group-hover:text-[#f3ba2f] transition-colors">
+                  <div className="pt-4 first:pt-0 flex items-start gap-4">
+                    <span className="font-mono text-2xl font-black text-[#d97706] dark:text-[#f3ba2f] shrink-0 mt-0.5">
+                      {pillar.number}
+                    </span>
+                    <div className="space-y-1">
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white">
                         {pillar.title}
                       </h4>
-                      <p className="mt-0.5 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300 font-normal">
+                      <p className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300 font-normal">
                         {pillar.desc}
                       </p>
                     </div>
@@ -179,35 +168,24 @@ export function About() {
               ))}
             </div>
 
-            {/* Mission & Motto Banner */}
+            {/* Mission & Motto Strip */}
             <Reveal delay={0.35}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-3">
-                <div className="flex items-center gap-3.5 rounded-2xl bg-slate-50 dark:bg-[#0c1a33]/85 p-4 border border-slate-200 dark:border-white/10 shadow-sm">
-                  <span className="grid size-10 place-items-center rounded-xl bg-amber-500/10 text-amber-700 dark:text-[#f3ba2f] border border-amber-500/25 shadow-xs shrink-0">
-                    <Target className="size-5" />
+              <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                <div className="flex-1 rounded-2xl bg-slate-50 dark:bg-white/5 p-4 border border-slate-200 dark:border-white/10">
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#d97706] dark:text-[#f3ba2f]">
+                    Our Mission
                   </span>
-                  <div>
-                    <span className="block text-[10px] font-bold uppercase tracking-wider text-amber-800 dark:text-[#f3ba2f]">
-                      Our Mission
-                    </span>
-                    <span className="block text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-tight">
-                      Your Success, Our Mission.
-                    </span>
-                  </div>
+                  <span className="block text-sm sm:text-base font-bold text-slate-900 dark:text-white mt-0.5">
+                    Your Success, Our Mission.
+                  </span>
                 </div>
-
-                <div className="flex items-center gap-3.5 rounded-2xl bg-slate-50 dark:bg-[#0c1a33]/85 p-4 border border-slate-200 dark:border-white/10 shadow-sm">
-                  <span className="grid size-10 place-items-center rounded-xl bg-amber-500/10 text-amber-700 dark:text-[#f3ba2f] border border-amber-500/25 shadow-xs shrink-0">
-                    <ShieldCheck className="size-5" />
+                <div className="flex-1 rounded-2xl bg-slate-50 dark:bg-white/5 p-4 border border-slate-200 dark:border-white/10">
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-[#d97706] dark:text-[#f3ba2f]">
+                    Our Motto
                   </span>
-                  <div>
-                    <span className="block text-[10px] font-bold uppercase tracking-wider text-amber-800 dark:text-[#f3ba2f]">
-                      Our Motto
-                    </span>
-                    <span className="block text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-tight">
-                      Discipline Today, Success Tomorrow.
-                    </span>
-                  </div>
+                  <span className="block text-sm sm:text-base font-bold text-slate-900 dark:text-white mt-0.5">
+                    Discipline Today, Success Tomorrow.
+                  </span>
                 </div>
               </div>
             </Reveal>

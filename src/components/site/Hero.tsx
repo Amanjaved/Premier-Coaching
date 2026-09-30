@@ -21,20 +21,20 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[90vh] flex flex-col justify-between overflow-hidden text-white pt-36 sm:pt-44 lg:pt-48 pb-16 sm:pb-20 select-none bg-[#050e1d]"
+      className="relative min-h-screen lg:min-h-[102vh] flex flex-col justify-between overflow-hidden text-white pt-40 sm:pt-48 lg:pt-56 pb-20 sm:pb-24 lg:pb-28 select-none bg-[#050e1d]"
       style={{
         backgroundImage: `
-          linear-gradient(to bottom, rgba(5, 14, 29, 0.82) 0%, rgba(5, 14, 29, 0.72) 45%, rgba(5, 14, 29, 0.94) 100%),
+          linear-gradient(to bottom, rgba(5, 14, 29, 0.82) 0%, rgba(5, 14, 29, 0.70) 45%, rgba(5, 14, 29, 0.95) 100%),
           url(${heroGroupPhoto})
         `,
         backgroundSize: "cover",
-        backgroundPosition: "center 30%",
+        backgroundPosition: "center 28%",
         backgroundRepeat: "no-repeat",
       }}
     >
       {/* Subtle Ambient Backlight Glow */}
       <div
-        className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 size-[650px] rounded-full bg-blue-600/10 blur-[150px]"
+        className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 size-[750px] rounded-full bg-blue-600/10 blur-[160px]"
         aria-hidden="true"
       />
 
@@ -82,86 +82,70 @@ export function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-5 pt-7 sm:pt-9"
+          className="flex flex-wrap items-center justify-center gap-4 pt-8 sm:pt-10"
         >
-          {/* Primary Button: Book free demo (Golden-amber) */}
+          {/* Primary Button */}
           <a
             href="#admission"
             onClick={scrollToAdmission}
-            className="rounded-xl bg-[#f3ba2f] hover:bg-[#e0ab24] px-7 sm:px-9 py-3.5 sm:py-4 text-sm sm:text-base font-bold text-[#071328] shadow-lg shadow-amber-500/20 transition-all hover:scale-103 active:scale-95 cursor-pointer"
+            className="rounded-full bg-[#f3ba2f] hover:bg-[#e0ab24] px-8 sm:px-10 py-3.5 sm:py-4 text-base font-bold text-[#071328] shadow-lg shadow-amber-500/25 transition-all hover:scale-103 active:scale-95 cursor-pointer"
           >
-            <span>Book free demo</span>
+            <span>Book Free Demo &amp; Counseling</span>
           </a>
 
-          {/* Secondary Button: Explore courses (Dark Glass Outline) */}
+          {/* Secondary Button */}
           <a
             href="#courses"
             onClick={scrollToCourses}
-            className="rounded-xl bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/40 px-7 sm:px-9 py-3.5 sm:py-4 text-sm sm:text-base font-bold text-white backdrop-blur-sm transition-all hover:scale-103 active:scale-95 cursor-pointer"
+            className="rounded-full bg-white/10 hover:bg-white/20 border border-white/25 hover:border-white/40 px-8 sm:px-10 py-3.5 sm:py-4 text-base font-bold text-white backdrop-blur-md transition-all hover:scale-103 active:scale-95 cursor-pointer"
           >
-            <span>Explore courses</span>
+            <span>Explore Academic Courses →</span>
           </a>
         </motion.div>
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. THREE FLOATING FEATURE CARDS (CENTERED AT BOTTOM FROM BROCHURE)        */}
+      {/* 2. HORIZONTAL EDITORIAL TRUST STRIP (NO CARDS, CLEAN HORIZONTAL BAND)    */}
       {/* ========================================================================= */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="relative mx-auto max-w-[1240px] px-4 sm:px-6 w-full z-10 pt-10 sm:pt-14"
+        className="relative mx-auto max-w-[1360px] px-4 sm:px-6 w-full z-10 pt-16 sm:pt-20 lg:pt-24"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
-          
-          {/* Feature Card 1: Class 1st to 12th */}
-          <div className="rounded-2xl border border-white/10 bg-[#0c1a33]/85 backdrop-blur-xl px-5 sm:px-6 py-5 sm:py-6 shadow-2xl text-center transition-transform hover:-translate-y-1">
-            <div className="font-sans text-2xl sm:text-3xl font-black text-[#f3ba2f] tracking-tight">
-              Class 1st–12th
+        <div className="rounded-2xl border border-white/15 bg-[#071328]/90 backdrop-blur-xl px-6 sm:px-8 py-5 sm:py-6 shadow-2xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
+            {/* Item 1 */}
+            <div className="pt-3 md:pt-0 md:px-4 first:pt-0 first:px-0">
+              <span className="block text-base sm:text-lg font-bold text-[#f3ba2f]">Class 1st–12th</span>
+              <span className="block text-xs sm:text-sm text-slate-300 mt-0.5">Primary Foundation &amp; Board Batches</span>
             </div>
-            <div className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-slate-200 mt-1.5">
-              CBSE • ICSE • State Board
+
+            {/* Item 2 */}
+            <div className="pt-3 md:pt-0 md:px-4">
+              <span className="block text-base sm:text-lg font-bold text-white">CBSE • ICSE • UP Board</span>
+              <span className="block text-xs sm:text-sm text-slate-300 mt-0.5">Board-Aligned Study Material</span>
             </div>
-            <div className="text-[11px] text-slate-300/80 mt-1">
-              Foundation & Board Exam Prep
+
+            {/* Item 3 */}
+            <div className="pt-3 md:pt-0 md:px-4">
+              <span className="block text-base sm:text-lg font-bold text-[#f3ba2f]">Small Batch Sizes</span>
+              <span className="block text-xs sm:text-sm text-slate-300 mt-0.5">Individual Attention &amp; Daily Doubts</span>
+            </div>
+
+            {/* Item 4 */}
+            <div className="pt-3 md:pt-0 md:px-4">
+              <span className="block text-base sm:text-lg font-bold text-white">Online &amp; Offline</span>
+              <span className="block text-xs sm:text-sm text-slate-300 mt-0.5">Dubagga Center &amp; Live Remote</span>
             </div>
           </div>
-
-          {/* Feature Card 2: Quality Teaching */}
-          <div className="rounded-2xl border border-white/10 bg-[#0c1a33]/85 backdrop-blur-xl px-5 sm:px-6 py-5 sm:py-6 shadow-2xl text-center transition-transform hover:-translate-y-1">
-            <div className="font-sans text-2xl sm:text-3xl font-black text-[#f3ba2f] tracking-tight">
-              Quality Teaching
-            </div>
-            <div className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-slate-200 mt-1.5">
-              Better Results
-            </div>
-            <div className="text-[11px] text-slate-300/80 mt-1">
-              Concept-Based & Small Batches
-            </div>
-          </div>
-
-          {/* Feature Card 3: Online & Offline Classes */}
-          <div className="rounded-2xl border border-white/10 bg-[#0c1a33]/85 backdrop-blur-xl px-5 sm:px-6 py-5 sm:py-6 shadow-2xl text-center transition-transform hover:-translate-y-1">
-            <div className="font-sans text-2xl sm:text-3xl font-black text-[#f3ba2f] tracking-tight">
-              Online & Offline
-            </div>
-            <div className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-slate-200 mt-1.5">
-              Classes Available
-            </div>
-            <div className="text-[11px] text-slate-300/80 mt-1">
-              Learn from Anywhere, Anytime!
-            </div>
-          </div>
-
         </div>
 
-        {/* Bottom Motto Strip from Brochure */}
-        <p className="text-center text-[11px] sm:text-xs font-bold uppercase tracking-widest text-amber-300/80 mt-4">
-          ★ Discipline Today, Success Tomorrow ★
+        {/* Bottom Motto */}
+        <p className="text-center text-xs font-semibold uppercase tracking-widest text-amber-300/80 mt-4">
+          Learn • Practice • Succeed — Discipline Today, Success Tomorrow
         </p>
       </motion.div>
-
     </section>
   );
 }

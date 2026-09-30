@@ -8,7 +8,9 @@ import {
   ExternalLink,
   Car,
   CheckCircle2,
+  Loader2,
 } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { siteContent } from "@/data/siteContent";
 import { whatsappLink } from "@/lib/enquiry";
 import { SectionHeading } from "./SectionHeading";
@@ -19,6 +21,42 @@ export function Contact() {
   const { contact } = siteContent;
 
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=Behind+Yadav+Bazar,+Dubagga,+Lucknow`;
+
+  const mapSrc =
+    contact.mapEmbedUrl ||
+    "https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1sBehind+Yadav+Bazar,+Dubagga,+Lucknow";
+
+  const [shouldLoadMap, setShouldLoadMap] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // 1. Trigger map loading when within 1000px of viewport
+    if (typeof window !== "undefined" && "IntersectionObserver" in window && mapContainerRef.current) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0]?.isIntersecting) {
+            setShouldLoadMap(true);
+            observer.disconnect();
+          }
+        },
+        { rootMargin: "1000px" }
+      );
+      observer.observe(mapContainerRef.current);
+
+      // 2. Fallback: preload after 2 seconds of idle time so it's ready before the user scrolls
+      const idleTimer = setTimeout(() => {
+        setShouldLoadMap(true);
+      }, 2000);
+
+      return () => {
+        observer.disconnect();
+        clearTimeout(idleTimer);
+      };
+    } else {
+      setShouldLoadMap(true);
+    }
+  }, []);
 
   return (
     <section
@@ -273,17 +311,69 @@ export function Contact() {
                   </a>
                 </div>
 
-                {/* Map Iframe */}
-                <div className="relative min-h-[380px] sm:min-h-[460px] lg:min-h-full w-full flex-1">
-                  <iframe
-                    title="Premier Coaching Location Map - Dubagga, Lucknow"
-                    src={`https://www.google.com/maps?q=${contact.mapQuery}&output=embed`}
-                    loading="lazy"
-                    className="size-full border-0 absolute inset-0"
-                  />
+                {/* Map Viewport Container */}
+                <div
+                  ref={mapContainerRef}
+                  className="relative min-h-[380px] sm:min-h-[460px] lg:min-h-full w-full flex-1 overflow-hidden bg-slate-900"
+                >
+                  {/* Stylized Loading Skeleton / Facade */}
+                  <div
+                    className={`absolute inset-0 z-0 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-700 ${
+                      mapLoaded ? "opacity-0 pointer-events-none" : "opacity-100"
+                    }`}
+                  >
+                    {/* Background Grid Pattern */}
+                    <div
+                      className="absolute inset-0 opacity-15 bg-[radial-gradient(#f3ba2f_1px,transparent_1px)] [background-size:20px_20px]"
+                      aria-hidden="true"
+                    />
+
+                    {/* Glowing Pin & Pulse */}
+                    <div className="relative mb-4">
+                      <span className="absolute -inset-3 rounded-full bg-amber-400/20 animate-ping" />
+                      <span className="relative grid size-12 place-items-center rounded-2xl bg-amber-500/20 text-[#f3ba2f] border border-amber-400/40 shadow-lg shadow-amber-500/10">
+                        <MapPin className="size-6" />
+                      </span>
+                    </div>
+
+                    <div className="relative z-10 space-y-1.5 max-w-xs">
+                      <div className="flex items-center justify-center gap-2 text-xs font-bold text-slate-200">
+                        <Loader2 className="size-3.5 text-[#f3ba2f] animate-spin" />
+                        <span>Loading Interactive Map...</span>
+                      </div>
+                      <p className="text-[11px] text-slate-400">
+                        Dubagga Center • Behind Yadav Bazar
+                      </p>
+                    </div>
+
+                    <div className="mt-5 relative z-10">
+                      <a
+                        href={directionsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 text-[11px] font-semibold text-white transition-colors"
+                      >
+                        <span>Open Directly in Google Maps</span>
+                        <ExternalLink className="size-3" />
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Preloaded Map Iframe */}
+                  {shouldLoadMap && (
+                    <iframe
+                      title="Premier Coaching Location Map - Dubagga, Lucknow"
+                      src={mapSrc}
+                      loading="eager"
+                      onLoad={() => setMapLoaded(true)}
+                      className={`size-full border-0 absolute inset-0 transition-opacity duration-700 ${
+                        mapLoaded ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  )}
 
                   {/* Top-Left Floating Branded Pin Badge */}
-                  <div className="absolute top-3 left-3 z-10 flex items-center gap-2 rounded-xl bg-slate-900/95 dark:bg-[#081426]/95 px-3.5 py-2 text-xs font-bold text-white shadow-xl backdrop-blur-md border border-white/15">
+                  <div className="absolute top-3 left-3 z-10 flex items-center gap-2 rounded-xl bg-slate-900/95 dark:bg-[#081426]/95 px-3.5 py-2 text-xs font-bold text-white shadow-xl backdrop-blur-md border border-white/15 pointer-events-none">
                     <MapPin className="size-3.5 text-[#f3ba2f] shrink-0" />
                     <span className="truncate">Behind Yadav Bazar, Dubagga, Lucknow</span>
                   </div>

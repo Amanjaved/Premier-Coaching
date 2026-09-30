@@ -28,7 +28,7 @@ export function Results() {
       className: "High Achiever",
       rank: "Distinction",
       isGrandChampion: false,
-      achievement: "Outstanding performance in Mathematics & Science",
+      achievement: "Outstanding performance in Mathematics & Science",  
     },
     {
       name: "Dishant Gautam",
@@ -81,81 +81,46 @@ export function Results() {
           align="center"
         />
 
-        {/* ==================== PODIUM & ACHIEVERS GRID ==================== */}
-        <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-          {achievers.map((student, i) => (
-            <Reveal
-              key={student.name}
-              delay={i * 0.08}
-              className={student.isGrandChampion ? "md:col-span-2 lg:col-span-1" : ""}
-            >
-              <div
-                className={`relative flex h-full flex-col justify-between rounded-3xl p-6 sm:p-7 transition-all duration-300 ${
-                  student.isGrandChampion
-                    ? "bg-white dark:bg-[#0c1a33] border-2 border-amber-400 dark:border-amber-400/60 shadow-lg dark:shadow-[0_0_40px_rgba(243,186,47,0.2)] hover:scale-102"
-                    : "bg-white dark:bg-[#0c1a33]/85 border border-slate-200/90 dark:border-white/10 backdrop-blur-md shadow-sm dark:shadow-xl hover:border-amber-400/40"
-                }`}
-              >
-                {/* Crown / Top Badge for Grand Champion */}
-                {student.isGrandChampion && (
-                  <div className="absolute -top-3.5 inset-x-0 mx-auto w-fit inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-400 to-[#f3ba2f] px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#071328] shadow-md">
-                    <Trophy className="size-3.5 text-[#071328]" />
-                    <span>Top Achiever</span>
-                  </div>
-                )}
-
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span
-                      className={`grid size-12 place-items-center rounded-2xl ${
-                        student.isGrandChampion
-                          ? "bg-[#f3ba2f] text-[#071328] shadow-md"
-                          : "bg-amber-500/10 dark:bg-amber-400/10 text-amber-700 dark:text-[#f3ba2f] border border-amber-500/25 dark:border-amber-400/30"
-                      }`}
-                    >
-                      <Trophy className="size-6" />
-                    </span>
-
-                    <span
-                      className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${
-                        student.isGrandChampion
-                          ? "bg-amber-500/15 dark:bg-amber-400/20 text-amber-800 dark:text-[#f3ba2f] border border-amber-500/30 dark:border-amber-400/40"
-                          : "bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10"
-                      }`}
-                    >
-                      {student.badgeTitle}
+        {/* ==================== GIANT NUMBERS BOARD TOPPERS DISPLAY ==================== */}
+        <div className="mt-12 sm:mt-16 rounded-3xl bg-white dark:bg-[#0c1a33] border border-slate-200 dark:border-white/10 p-8 sm:p-12 shadow-lg dark:shadow-2xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 dark:divide-white/10">
+            {achievers.map((student, i) => (
+              <Reveal key={student.name} delay={i * 0.08} className="pt-6 sm:pt-0 sm:px-6 first:pt-0 first:px-0">
+                <div className="space-y-3 text-center sm:text-left">
+                  {/* Giant Score */}
+                  <div className="font-serif text-5xl sm:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
+                    <span className={student.isGrandChampion ? "text-[#d97706] dark:text-[#f3ba2f]" : "text-slate-900 dark:text-white"}>
+                      <CountUp to={student.scoreNumber} />
+                      {student.decimal}
                     </span>
                   </div>
 
-                  {/* Percentage Counter */}
-                  <div className="mt-5">
-                    <div className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight flex items-baseline gap-0.5">
-                      <span className={student.isGrandChampion ? "text-[#d97706] dark:text-[#f3ba2f]" : "text-slate-900 dark:text-white"}>
-                        <CountUp to={student.scoreNumber} />
-                        {student.decimal}
-                      </span>
-                    </div>
-
-                    <h3 className="mt-2 font-serif text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  {/* Student Name */}
+                  <div className="space-y-0.5">
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
                       {student.name}
                     </h3>
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-300">{student.className}</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#d97706] dark:text-[#f3ba2f]">
+                      {student.className}
+                    </p>
                   </div>
 
-                  <p className="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-300 font-normal border-t border-slate-100 dark:border-white/10 pt-2.5">
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-normal leading-relaxed">
                     {student.achievement}
                   </p>
                 </div>
+              </Reveal>
+            ))}
+          </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between text-[11px]">
-                  <span className="inline-flex items-center gap-1.5 font-bold text-[#d97706] dark:text-[#f3ba2f]">
-                    <CheckCircle2 className="size-3.5 shrink-0" /> Verified Board Score
-                  </span>
-                  <span className="text-slate-400 dark:text-white/40 font-mono">2024</span>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+          {/* Verification Badge */}
+          <div className="mt-8 pt-6 border-t border-slate-100 dark:border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
+            <span className="flex items-center gap-1.5 font-bold text-[#d97706] dark:text-[#f3ba2f]">
+              <CheckCircle2 className="size-4 shrink-0" />
+              <span>Verified student results printed on official institute brochure</span>
+            </span>
+            <span>Dubagga Center, Lucknow</span>
+          </div>
         </div>
 
         {/* ==================== REAL MEDAL CEREMONY & PHOTOGRAPHIC EVIDENCE ==================== */}

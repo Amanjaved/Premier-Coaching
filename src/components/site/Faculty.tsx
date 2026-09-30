@@ -2,43 +2,12 @@ import {
   GraduationCap,
   BookOpen,
   Award,
-  CheckCircle2,
 } from "lucide-react";
 import { siteContent } from "@/data/siteContent";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import heroGroup from "@/assets/hero-group.jpeg";
 import facultyBoard from "@/assets/faculty-board.jpeg";
-
-const facultyExperience: Record<
-  string,
-  { role: string; bio: string; badge: string; color: string }
-> = {
-  "Tauqeer Mustafa": {
-    role: "Senior Faculty & Academic Director",
-    bio: "Specializing in numerical physics and advanced mathematics, simplifying complex calculus and kinematics through intuitive derivations.",
-    badge: "Physics & Mathematics",
-    color: "from-blue-600 to-indigo-700",
-  },
-  "Vishal Gupta": {
-    role: "Senior Chemistry Specialist",
-    bio: "Expert in organic reaction mechanisms and inorganic periodic trends, providing easy-to-remember notes and balanced chemical equation masterclasses.",
-    badge: "Chemistry Specialist",
-    color: "from-amber-500 to-orange-600",
-  },
-  "Rohit Kr. Priyadarshi": {
-    role: "Biology & Life Sciences Mentor",
-    bio: "Focusing on high-scoring botanical and anatomical diagrams, genetics, and structured point-wise board answer presentation.",
-    badge: "Biology Specialist",
-    color: "from-emerald-600 to-teal-700",
-  },
-  "Aman Gautam": {
-    role: "English Language & Literature Faculty",
-    bio: "Dedicated to building solid English grammar fundamentals, reading comprehension, creative writing, and formal board letter/essay techniques.",
-    badge: "English Faculty",
-    color: "from-[#d7193f] to-[#f4511e]",
-  },
-};
 
 const initials = (name: string) =>
   name
@@ -73,62 +42,45 @@ export function Faculty() {
           align="split"
         />
 
-        {/* ==================== 4 PROMINENT FACULTY CARDS ==================== */}
-        <div className="mt-10 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* ==================== 4 PROMINENT FACULTY PROFILES ==================== */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {siteContent.faculty.map((teacher, i) => {
-            const extra = facultyExperience[teacher.name] || {
-              role: "Subject Specialist",
-              bio: "Dedicated to concept clarity and regular student assessments.",
-              badge: teacher.subjects,
-              color: "from-blue-600 to-indigo-700",
-            };
-
             return (
               <Reveal key={teacher.name} delay={i * 0.07}>
-                <div className="group relative flex h-full flex-col justify-between rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0c1a33]/90 p-6 sm:p-7 shadow-sm hover:shadow-md dark:shadow-xl transition-all duration-300 hover:border-amber-400/40 hover:-translate-y-1">
+                <div className="group relative flex h-full flex-col justify-between rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0c1a33] p-7 shadow-sm hover:shadow-xl dark:shadow-2xl transition-all duration-300 hover:border-amber-400/40 hover:-translate-y-1">
                   <div>
-                    {/* Avatar Crest with Initials */}
+                    {/* Top Monogram / Initials */}
                     <div className="flex items-center justify-between">
-                      <div className="grid size-13 place-items-center rounded-2xl bg-amber-500/10 dark:bg-amber-400/15 border border-amber-500/25 dark:border-amber-400/30 text-white shadow-xs transition-transform group-hover:scale-105">
-                        <span className="font-serif text-base font-bold tracking-wider text-[#d97706] dark:text-[#f3ba2f]">
-                          {initials(teacher.name)}
-                        </span>
+                      <div className="grid size-13 place-items-center rounded-2xl bg-amber-500/10 dark:bg-amber-400/15 border border-amber-500/25 dark:border-amber-400/30 text-amber-800 dark:text-[#f3ba2f] font-serif text-lg font-bold">
+                        {initials(teacher.name)}
                       </div>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 dark:bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">
-                        <CheckCircle2 className="size-3 text-[#d97706] dark:text-[#f3ba2f]" /> Verified
+                      <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                        Mentor 0{i + 1}
                       </span>
                     </div>
 
-                    <h3 className="mt-4 font-serif text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#d97706] dark:group-hover:text-[#f3ba2f] transition-colors">
+                    <h3 className="mt-5 font-serif text-xl font-bold text-slate-900 dark:text-white group-hover:text-[#d97706] dark:group-hover:text-[#f3ba2f] transition-colors">
                       {teacher.name}
                     </h3>
 
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
-                      {extra.role}
-                    </p>
-
-                    {/* Subject Pill */}
-                    <div className="mt-2.5">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 dark:bg-amber-400/10 px-3 py-0.5 text-xs font-bold text-amber-800 dark:text-[#f3ba2f] border border-amber-500/25">
+                    {/* Subject Specialization */}
+                    <div className="mt-2">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 dark:bg-amber-400/10 px-3 py-1 text-xs font-bold text-amber-800 dark:text-[#f3ba2f] border border-amber-500/20">
                         <BookOpen className="size-3 shrink-0" />
                         <span>{teacher.subjects}</span>
                       </span>
                     </div>
 
-                    {/* Qualifications Badge */}
-                    <div className="mt-2.5 flex items-start gap-2 rounded-xl bg-slate-50 dark:bg-white/5 p-2.5 border border-slate-200 dark:border-white/10 text-xs text-slate-700 dark:text-slate-200">
-                      <GraduationCap className="size-3.5 shrink-0 text-[#d97706] dark:text-[#f3ba2f] mt-0.5" />
+                    {/* Verified Degree from Board */}
+                    <div className="mt-3.5 flex items-start gap-2.5 rounded-xl bg-slate-50 dark:bg-white/5 p-3 border border-slate-200 dark:border-white/10 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+                      <GraduationCap className="size-4 shrink-0 text-[#d97706] dark:text-[#f3ba2f] mt-0.5" />
                       <span className="font-medium leading-snug">{teacher.qualification}</span>
                     </div>
-
-                    <p className="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-300 font-normal">
-                      {extra.bio}
-                    </p>
                   </div>
 
-                  <div className="mt-5 pt-3.5 border-t border-slate-100 dark:border-white/10 flex items-center justify-between text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                    <span>1-on-1 Doubt Sessions</span>
-                    <span className="text-[#d97706] dark:text-[#f3ba2f] font-bold">Active Mentor</span>
+                  <div className="mt-6 pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-medium">
+                    <span>Dubagga Faculty</span>
+                    <span className="text-[#d97706] dark:text-[#f3ba2f] font-bold">Daily Doubts</span>
                   </div>
                 </div>
               </Reveal>
